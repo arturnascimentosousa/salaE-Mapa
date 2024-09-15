@@ -83,28 +83,34 @@ def show_mesas():
                 img {
                     margin-top: 20px;
                 }
+
+                .container{
+                    display:flex;
+                }
             </style>
         </head>
         <body>
             <h1>Distribuição de Alunos nas Mesas</h1>
-            <div class="mesas-container">
-                <div class="linha">
-                    {% for i, mesa in enumerate(mesas[:3], 1) %}
-                        <div class="mesa">
-                            <h2>Mesa {{ i }}:</h2>
-                            <p>{{ ', '.join(mesa) }}</p>
-                        </div>
-                    {% endfor %}
+            <div class="container">
+                <div class="mesas-container">
+                    <div class="linha">
+                        {% for i, mesa in enumerate(mesas[:3], 1) %}
+                            <div class="mesa">
+                                <h2>Mesa {{ i }}:</h2>
+                                <p>{{ ', '.join(mesa) }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="linha">
+                        {% for i, mesa in enumerate(mesas[3:], 4) %}
+                            <div class="mesa">
+                                <h2>Mesa {{ i }}:</h2>
+                                <p>{{ ', '.join(mesa) }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
-                <div class="linha">
-                    {% for i, mesa in enumerate(mesas[3:], 4) %}
-                        <div class="mesa">
-                            <h2>Mesa {{ i }}:</h2>
-                            <p>{{ ', '.join(mesa) }}</p>
-                        </div>
-                    {% endfor %}
-                </div>
-                <img src="{{ url_for('static', filename='mapadesala2E.svg') }}" alt="Mapa da Sala" height="300px">
+                 <img src="{{ url_for('static', filename='mapadesala2E.svg') }}" alt="Mapa da Sala" height="300px">
             </div>
         </body>
     </html>
