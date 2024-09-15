@@ -82,6 +82,7 @@ def show_mesas():
                 }
                 img {
                     margin-top: 20px;
+                    margin-left: 20px;  /* Adiciona margem à esquerda da imagem */
                 }
 
                 .container{
