@@ -30,7 +30,7 @@ def distribuir_alunos():
 def schedule_task():
     timezone = pytz.timezone('America/Sao_Paulo')
     scheduler = BackgroundScheduler()
-    scheduler.add_job(distribuir_alunos, 'cron', hour=6, minute=0, timezone=timezone)
+    scheduler.add_job(distribuir_alunos, 'cron', hour=16, minute=10, timezone=timezone)
     scheduler.start()
 
 # Rota principal que exibe as mesas
@@ -104,8 +104,10 @@ def show_mesas():
                         </div>
                     {% endfor %}
                 </div>
+                <div class="linha">
+                   <img src="{{ url_for('static', filename='mapadesala2E.svg') }}" alt="Mapa da Sala" height="300px">
+                </div>
             </div>
-            <img src="{{ url_for('static', filename='mapadesala2E.svg') }}" alt="Mapa da Sala" height="300px">
         </body>
     </html>
     '''
