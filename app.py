@@ -104,9 +104,7 @@ def show_mesas():
                         </div>
                     {% endfor %}
                 </div>
-                <div class="linha">
-                   <img src="{{ url_for('static', filename='mapadesala2E.svg') }}" alt="Mapa da Sala" height="300px">
-                </div>
+                <img src="{{ url_for('static', filename='mapadesala2E.svg') }}" alt="Mapa da Sala" height="300px">
             </div>
         </body>
     </html>
