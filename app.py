@@ -66,6 +66,12 @@ def show_mesas():
                     gap: 20px;
                     margin-top: 20px;
                 }
+                .linha {
+                    display: flex;
+                    justify-content: center;
+                    gap: 20px;
+                    margin-bottom: 20px;
+                }
                 .mesa {
                     border: 2px solid #4CAF50;
                     padding: 10px;
@@ -82,12 +88,22 @@ def show_mesas():
         <body>
             <h1>Distribuição de Alunos nas Mesas</h1>
             <div class="mesas-container">
-                {% for i, mesa in enumerate(mesas, 1) %}
-                    <div class="mesa">
-                        <h2>Mesa {{ i }}:</h2>
-                        <p>{{ ', '.join(mesa) }}</p>
-                    </div>
-                {% endfor %}
+                <div class="linha">
+                    {% for i, mesa in enumerate(mesas[:3], 1) %}
+                        <div class="mesa">
+                            <h2>Mesa {{ i }}:</h2>
+                            <p>{{ ', '.join(mesa) }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="linha">
+                    {% for i, mesa in enumerate(mesas[3:], 4) %}
+                        <div class="mesa">
+                            <h2>Mesa {{ i }}:</h2>
+                            <p>{{ ', '.join(mesa) }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
             <img src="{{ url_for('static', filename='mapadesala2E.svg') }}" alt="Mapa da Sala" height="300px">
         </body>
