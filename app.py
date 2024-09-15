@@ -3,40 +3,36 @@ import random
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime
 import pytz
- 
+
 # Lista de alunos
 total_alunos = [
-    "Ana Bia","Stalberg" "Beatriz", "Bianca", "Nascimento", "Boca",
+    "Ana Bia", "Stalberg", "Beatriz", "Bianca", "Nascimento", "Boca",
     "Sophie", "Laura", "Lívia", "Cassuriaga", "Evelyn", "João",
     "Joaquim", "Daichi", "Schettini", "Rapha", "Roger", "Heitor",
     "Xavier", "Teotonio", "Vicente", "Geovanna", "Ryan", "Albano"
 ]
- 
+
 app = Flask(__name__)
 mesas = []
- 
+
 # Função para distribuir os alunos nas mesas
 def distribuir_alunos():
     global mesas
     alunos = total_alunos.copy()
     random.shuffle(alunos)
-    mesas = [[] for _ in range(5)]
-   
-    for i in range(4):
-        for mesa in mesas:
-            mesa.append(alunos.pop())
- 
-    while alunos:
+    mesas = [[] for _ in range(6)]  # Agora serão 6 mesas
+
+    for i in range(4):  # Agora são 4 alunos por mesa
         for mesa in mesas:
             if alunos:
                 mesa.append(alunos.pop())
- 
+
 def schedule_task():
     timezone = pytz.timezone('America/Sao_Paulo')
     scheduler = BackgroundScheduler()
     scheduler.add_job(distribuir_alunos, 'cron', hour=6, minute=0, timezone=timezone)
     scheduler.start()
- 
+
 # Rota principal que exibe as mesas
 @app.route('/')
 def show_mesas():
@@ -56,7 +52,7 @@ def show_mesas():
     </html>
     '''
     return render_template_string(html_template, mesas=mesas, enumerate=enumerate)
- 
+
 if __name__ == '__main__':
     distribuir_alunos()  # Inicializa as mesas na primeira execução
     schedule_task()  # Agenda a tarefa para rodar todos os dias às 6 da manhã
