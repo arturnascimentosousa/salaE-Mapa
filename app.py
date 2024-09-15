@@ -42,12 +42,18 @@ def show_mesas():
             <title>Distribuição de Alunos</title>
         </head>
         <body>
-            <h1>Distribuição de Alunos nas Mesas</h1>
-            {% for i, mesa in enumerate(mesas, 1) %}
-                <h2>Mesa {{ i }}:</h2>
-                <p>{{ ', '.join(mesa) }}</p>
-            {% endfor %}
-            <img src="{{ url_for('static', filename='mapademesa.png') }}" alt="" height="300px">
+        <div styles="display:flex;">
+            <div>
+                <h1>Distribuição de Alunos nas Mesas</h1>
+                {% for i, mesa in enumerate(mesas, 1) %}
+                    <h2>Mesa {{ i }}:</h2>
+                    <p>{{ ', '.join(mesa) }}</p>
+                {% endfor %}
+            <div>
+            <div>
+                <img src="{{ url_for('static', filename='mapademesa.png') }}" alt="" height="300px">
+            <div>
+        </div>    
         </body>
     </html>
     '''
