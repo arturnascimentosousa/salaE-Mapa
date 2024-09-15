@@ -40,14 +40,48 @@ def show_mesas():
     <html>
         <head>
             <title>Distribuição de Alunos</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f0f8ff;
+                    color: #333;
+                    text-align: center;
+                }
+                h1 {
+                    color: #4CAF50;
+                    margin-top: 20px;
+                }
+                h2 {
+                    color: #2E8B57;
+                    margin-bottom: 10px;
+                }
+                p {
+                    font-size: 18px;
+                    color: #555;
+                }
+                .mesa {
+                    border: 2px solid #4CAF50;
+                    padding: 10px;
+                    border-radius: 8px;
+                    width: 200px;
+                    margin: 20px auto;
+                    background-color: #fff;
+                    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                }
+                img {
+                    margin-top: 20px;
+                }
+            </style>
         </head>
         <body>
             <h1>Distribuição de Alunos nas Mesas</h1>
             {% for i, mesa in enumerate(mesas, 1) %}
-                <h2>Mesa {{ i }}:</h2>
-                <p>{{ ', '.join(mesa) }}</p>
+                <div class="mesa">
+                    <h2>Mesa {{ i }}:</h2>
+                    <p>{{ ', '.join(mesa) }}</p>
+                </div>
             {% endfor %}
-            <img src="{{ url_for('static', filename='mapademesa.png') }}" alt="" height="300px">
+            <img src="{{ url_for('static', filename='mapadesala.svg') }}" alt="Mapa da Sala" height="300px">
         </body>
     </html>
     '''
@@ -57,4 +91,3 @@ if __name__ == '__main__':
     distribuir_alunos()  # Inicializa as mesas na primeira execução
     schedule_task()  # Agenda a tarefa para rodar todos os dias às 6 da manhã
     app.run(host='0.0.0.0', port=5000)
-    print("oieee rodei")
